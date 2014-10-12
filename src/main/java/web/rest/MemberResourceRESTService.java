@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.gmu.swe681.rest;
+package web.rest;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,9 +40,9 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import edu.gmu.swe681.data.MemberRepository;
-import edu.gmu.swe681.model.Member;
-import edu.gmu.swe681.service.MemberRegistration;
+import ejb.dao.MemberRepository;
+import ejb.domain.Member;
+import ejb.service.MemberRegistration;
 
 /**
  * JAX-RS Example

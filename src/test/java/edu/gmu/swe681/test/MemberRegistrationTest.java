@@ -24,15 +24,18 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import edu.gmu.swe681.model.Member;
-import edu.gmu.swe681.service.MemberRegistration;
-import edu.gmu.swe681.util.Resources;
+
+import ejb.domain.Member;
+import ejb.service.MemberRegistration;
+
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import app.util.Resources;
 
 @RunWith(Arquillian.class)
 public class MemberRegistrationTest {

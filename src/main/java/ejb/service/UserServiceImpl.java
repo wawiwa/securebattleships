@@ -11,7 +11,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import models.User_reg;
+import web.data.User_reg;
 import ejb.dao.GameDaoLocal;
 import ejb.dao.GameStatDaoLocal;
 import ejb.dao.UserDaoLocal;

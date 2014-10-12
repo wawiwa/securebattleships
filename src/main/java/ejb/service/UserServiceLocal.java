@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import models.User_reg;
+import web.data.User_reg;
 import ejb.domain.Game;
 import ejb.domain.User;
 

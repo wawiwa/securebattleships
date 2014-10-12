@@ -2,7 +2,7 @@ package ejb.dao;
 
 import javax.ejb.Local;
 
-import models.User_reg;
+import web.data.User_reg;
 import ejb.domain.User;
 
 @Local

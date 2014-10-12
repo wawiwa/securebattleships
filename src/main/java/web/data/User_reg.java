@@ -1,4 +1,4 @@
-package models;
+package web.data;
 
 /**
  * Description: The purpose of this class is to be linked with the login page.

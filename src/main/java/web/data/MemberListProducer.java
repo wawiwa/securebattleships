@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.gmu.swe681.data;
+package web.data;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -27,7 +27,8 @@ import javax.inject.Named;
 import java.util.List;
 import java.util.logging.Logger;
 
-import edu.gmu.swe681.model.Member;
+import ejb.dao.MemberRepository;
+import ejb.domain.Member;
 
 @RequestScoped
 public class MemberListProducer {

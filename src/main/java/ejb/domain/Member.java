@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.gmu.swe681.model;
+package ejb.domain;
 
 import java.io.Serializable;
 
