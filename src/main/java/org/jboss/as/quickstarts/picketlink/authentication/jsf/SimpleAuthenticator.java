@@ -16,10 +16,15 @@
  */
 package org.jboss.as.quickstarts.picketlink.authentication.jsf;
 
+import java.util.logging.Logger;
+
 import org.picketlink.annotations.PicketLink;
 import org.picketlink.authentication.BaseAuthenticator;
 import org.picketlink.credential.DefaultLoginCredentials;
 import org.picketlink.idm.model.basic.User;
+
+import ejb.domain.Player;
+import ejb.service.PlayerServiceLocal;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -36,17 +41,33 @@ import javax.inject.Inject;
 @PicketLink
 public class SimpleAuthenticator extends BaseAuthenticator {
 
+	@Inject
+	private Logger LOG;
+	
     @Inject 
     private DefaultLoginCredentials credentials;
 
     @Inject
     private FacesContext facesContext;
+    
+    @Inject PlayerServiceLocal psl;
 
     public void authenticate() {
         if ("jsmith".equals(credentials.getUserId()) &&
                 "abc123".equals(credentials.getPassword())) {
             setStatus(AuthenticationStatus.SUCCESS);
-            setAccount(new User("jsmith"));
+            Player jsmith = new Player("jsmith");
+            setAccount(jsmith);
+            psl.createNewPlayerInDb(jsmith);
+            LOG.info("Authenticated!!!!");
+        }
+        // if user exists
+        if (psl.doesPlayerExist(credentials.getUserId())) {
+        	// get user, check password
+        	if (psl.findPlayerByEmail(credentials.getUserId()).getPassword().equals(credentials.getPassword())) {
+        		setStatus(AuthenticationStatus.SUCCESS);
+               // setAccount(usl.register(user);); PROBLEMS BEGIN HERE!
+        	}
         } else {
             setStatus(AuthenticationStatus.FAILURE);
             facesContext.addMessage(null, new FacesMessage(

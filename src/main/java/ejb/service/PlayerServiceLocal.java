@@ -5,11 +5,19 @@ import java.util.List;
 import javax.ejb.Local;
 
 import web.data.User_reg;
+import ejb.dao.PlayerDaoLocal;
 import ejb.domain.Game;
-import ejb.domain.User;
+import ejb.domain.Player;
 
 @Local
-public interface UserServiceLocal {
+public interface PlayerServiceLocal {
+	
+	
+	public void register(Player player);
+	
+	
+	
+	
 	
 	/**
 	 * 
@@ -20,7 +28,7 @@ public interface UserServiceLocal {
 	 * 	the initialized gameStat with this user.
 	 * 
 	 */
-	public User createNewUserInDb(User user);
+	public Player createNewPlayerInDb(Player player);
 	
 	/**
 	 * 
@@ -30,10 +38,10 @@ public interface UserServiceLocal {
 	 * Locates a user by email address of User object. 
 	 * 
 	 */
-	public User findUserByEmail(User user);
+	public Player findPlayerByEmail(Player player);
 	
 	
-	public User findUserByEmail(String email);
+	public Player findPlayerByEmail(String email);
 	
 	/**
 	 * 
@@ -42,7 +50,7 @@ public interface UserServiceLocal {
 	 * Increments the user's gameStat win column by 1.
 	 * 
 	 */
-	public void addWin(User user);
+	public void addWin(Player player);
 	
 	/**
 	 * 
@@ -51,7 +59,7 @@ public interface UserServiceLocal {
 	 * 
 	 * Checks if a user exists in the db.
 	 */
-	public boolean doesUserExist(User user);
+	public boolean doesPlayerExist(Player player);
 	
 	/**
 	 * 
@@ -70,7 +78,7 @@ public interface UserServiceLocal {
 	 * 
 	 * Checks if a user exists by email address.
 	 */
-	public boolean doesUserExist(String email);
+	public boolean doesPlayerExist(String email);
 	
 	/**
 	 * 
@@ -81,7 +89,7 @@ public interface UserServiceLocal {
 	 * Instantiates a new game with current system time.
 	 * 
 	 */
-	public Game createNewGame(User user1, User user2); 
+	public Game createNewGame(Player player1, Player player2); 
 	
 	/**
 	 * 
@@ -90,7 +98,7 @@ public interface UserServiceLocal {
 	 * 
 	 * Returns a list of games played by a specific user.
 	 */
-	public List<Game> getAllUserGames(User user);
+	public List<Game> getAllPlayerGames(Player player);
 	
 	/**
 	 * 
@@ -98,7 +106,7 @@ public interface UserServiceLocal {
 	 * 
 	 * Returns a list of all users currently flagged as 'online'.
 	 */
-	public List<User> getUsersOnline();
+	public List<Player> getPlayersOnline();
 	
 	/**
 	 * 
@@ -106,7 +114,7 @@ public interface UserServiceLocal {
 	 * 
 	 * Returns a list of all users currently flagged as 'offline'.
 	 */
-	public List<User> getUsersOffline();
+	public List<Player> getPlayersOffline();
 	
 	/**
 	 * 
@@ -114,7 +122,7 @@ public interface UserServiceLocal {
 	 * 
 	 * Returns a list of all users currently playing a game.
 	 */
-	public List<User> getUsersInGame();
+	public List<Player> getPlayersInGame();
 	
 	/**
 	 * 
@@ -122,8 +130,10 @@ public interface UserServiceLocal {
 	 * 
 	 * Updates a user's state in the db.
 	 */
-	public void updateUserState(User user);
+	public void updatePlayerState(Player player);
 	
 	public GameService getGs();
+	
+	public PlayerDaoLocal getPdl();
 	
 }

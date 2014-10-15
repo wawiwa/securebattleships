@@ -4,24 +4,24 @@ import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 
 import web.data.User_reg;
-import ejb.domain.User;
+import ejb.domain.Player;
 
 @Stateless
-public class UserDaoImpl extends GenericDaoImpl<User> implements UserDaoLocal{
+public class PlayerDaoImpl extends GenericDaoImpl<Player> implements PlayerDaoLocal{
 
 	/**
 	 * @param email address
 	 * 
 	 * @return empty User if not found
 	 */
-    public User findUserByEmail(String email) {
-    	User user = null;
+    public Player findPlayerByEmail(String email) {
+    	Player user = null;
     	try {
-			user = (User) em
-				.createNamedQuery("findUserByEmail")
+			user = (Player) em
+				.createNamedQuery("findPlayerByEmail")
 				.setParameter("email", email).getSingleResult();
     	} catch (NoResultException nre) {
-    		return new User();
+    		return new Player();
     	}
 		return user;
     }

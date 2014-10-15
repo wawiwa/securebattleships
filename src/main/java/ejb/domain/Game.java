@@ -25,35 +25,35 @@ public class Game implements Serializable {
 	private long id;
 	@OneToOne(fetch=FetchType.LAZY)
 	  @JoinColumn(name="USER1_ID")
-	private User user1;
+	private Player user1;
 	@OneToOne(fetch=FetchType.LAZY)
 	  @JoinColumn(name="USER2_ID")
-	private User user2;
+	private Player user2;
 	private Date gameCreated;
 	private boolean unfinished;
-	private User winner; // null if unfinished
-	private User loser; // null if unfinished
+	private Player winner; // null if unfinished
+	private Player loser; // null if unfinished
 	private String user1json;
 	private String user2json;
 	@OneToOne(fetch=FetchType.LAZY)
 	  @JoinColumn(name="LAST_MOVE_USER_ID")
-	private User lastUserToMove;
+	private Player lastUserToMove;
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public User getUser1() {
+	public Player getUser1() {
 		return user1;
 	}
-	public void setUser1(User user1) {
+	public void setUser1(Player user1) {
 		this.user1 = user1;
 	}
-	public User getUser2() {
+	public Player getUser2() {
 		return user2;
 	}
-	public void setUser2(User user2) {
+	public void setUser2(Player user2) {
 		this.user2 = user2;
 	}
 	public Date getGameCreated() {
@@ -68,16 +68,16 @@ public class Game implements Serializable {
 	public void setUnfinished(boolean unfinished) {
 		this.unfinished = unfinished;
 	}
-	public User getWinner() {
+	public Player getWinner() {
 		return winner;
 	}
-	public void setWinner(User winner) {
+	public void setWinner(Player winner) {
 		this.winner = winner;
 	}
-	public User getLoser() {
+	public Player getLoser() {
 		return loser;
 	}
-	public void setLoser(User loser) {
+	public void setLoser(Player loser) {
 		this.loser = loser;
 	}
 	public String getUser1json() {
@@ -92,10 +92,10 @@ public class Game implements Serializable {
 	public void setUser2json(String user2json) {
 		this.user2json = user2json;
 	}
-	public User getLastUserToMove() {
+	public Player getLastUserToMove() {
 		return lastUserToMove;
 	}
-	public void setLastUserToMove(User lastUserToMove) {
+	public void setLastUserToMove(Player lastUserToMove) {
 		this.lastUserToMove = lastUserToMove;
 	}
 	

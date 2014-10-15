@@ -15,15 +15,15 @@ import javax.persistence.Transient;
 
 @NamedQueries({
 	@NamedQuery(name ="findUserByEmail", 
-			query="SELECT u FROM User u WHERE u.email LIKE :email"),
+			query="SELECT u FROM Player u WHERE u.email LIKE :email"),
 	@NamedQuery(name ="findUserReg", 
-			query="SELECT u FROM User u WHERE u.email LIKE :email AND u.password LIKE :password"),
+			query="SELECT u FROM Player u WHERE u.email LIKE :email AND u.password LIKE :password"),
 //	@NamedQuery(name ="findAllDataSourceByCategoryName",
 //			query="SELECT ds FROM DataSource ds WHERE ds.")
 })
 @Entity
-@Table(name="USERS")
-public class User implements Serializable {
+@Table(name="PLAYERS")
+public class Player implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -120,7 +120,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Player other = (Player) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -130,7 +130,7 @@ public class User implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password
+		return "Player [id=" + id + ", name=" + name + ", password=" + password
 				+ ", password2=" + ", email=" + email + "]";
 	}
 	

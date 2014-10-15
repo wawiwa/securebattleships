@@ -21,36 +21,32 @@
     xmlns:h="http://java.sun.com/jsf/html"
     template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
-        <h1>Welcome to Secure BattleShips!</h1>
+        <h1>Hello! Welcome to Secure BattleShips!</h1>
 
 
         <h:form id="reg">
-            <h2>Member Registration</h2>
+            <h2>User Registration</h2>
             <p>Enforces annotation-based constraints defined on the
                 model class.</p>
             <h:panelGrid columns="3" columnClasses="titleCell">
                 <h:outputLabel for="name" value="Name:" />
-                <h:inputText id="name" value="#{newMember.name}" />
+                <h:inputText id="name" value="#{newUser.name}" />
                 <h:message for="name" errorClass="invalid" />
 
                 <h:outputLabel for="email" value="Email:" />
-                <h:inputText id="email" value="#{newMember.email}" />
+                <h:inputText id="email" value="#{newUser.email}" />
                 <h:message for="email" errorClass="invalid" />
                 
                 <h:outputLabel for="password" value="Password:" />
-                <h:inputText id="password" value="#{newMember.password}" />
+                <h:inputText id="password" value="#{newUser.password}" />
                 <h:message for="password" errorClass="invalid" />
 
-                <h:outputLabel for="phoneNumber" value="Phone #:" />
-                <h:inputText id="phoneNumber"
-                    value="#{newMember.phoneNumber}" />
-                <h:message for="phoneNumber" errorClass="invalid" />
             </h:panelGrid>
 
             <p>
                 <h:panelGrid columns="2">
                     <h:commandButton id="register"
-                        action="#{memberController.register}"
+                        action="#{userController.register}"
                         value="Register" styleClass="register" />
                     <h:messages styleClass="messages"
                         errorClass="invalid" infoClass="valid"
@@ -59,27 +55,23 @@
             </p>
         </h:form>
         <h2>Members</h2>
-        <h:panelGroup rendered="#{empty members}">
+        <h:panelGroup rendered="#{empty users}">
             <em>No registered members.</em>
         </h:panelGroup>
-        <h:dataTable var="_member" value="#{members}"
-            rendered="#{not empty members}"
+        <h:dataTable var="_user" value="#{users}"
+            rendered="#{not empty users}"
             styleClass="simpletablestyle">
             <h:column>
                 <f:facet name="header">Id</f:facet>
-                #{_member.id}
+                #{_user.id}
             </h:column>
             <h:column>
                 <f:facet name="header">Name</f:facet>
-                #{_member.name}
+                #{_user.name}
             </h:column>
             <h:column>
                 <f:facet name="header">Email</f:facet>
-                #{_member.email}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Phone #</f:facet>
-                #{_member.phoneNumber}
+                #{_user.email}
             </h:column>
             <h:column>
                 <f:facet name="header">REST URL</f:facet>
