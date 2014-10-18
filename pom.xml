@@ -123,6 +123,7 @@
     <dependency>
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-api</artifactId>
+      <scope>compile</scope>
     </dependency>
 
     <!-- Import the PicketLink implementation, we deploy this as library with the application,
@@ -131,6 +132,12 @@
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-impl</artifactId>
       <scope>runtime</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.picketlink</groupId>
+      <artifactId>picketlink-idm-simple-schema</artifactId>
+      <scope>compile</scope>
     </dependency>
     
         <!-- First declare the APIs we depend on and need for compilation. All 

@@ -22,7 +22,7 @@ public abstract class GenericDaoImpl<T extends Serializable> implements
 		type = (Class<T>) pt.getActualTypeArguments()[0];
 	}
 
-	@Inject
+	@PersistenceContext(unitName = "primary")
 	protected EntityManager em;
 
 	

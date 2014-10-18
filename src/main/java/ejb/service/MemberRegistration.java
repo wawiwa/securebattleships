@@ -22,6 +22,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import java.util.logging.Logger;
 
@@ -32,8 +33,8 @@ public class MemberRegistration {
     @Inject
     private Logger log;
 
-    @Inject
-    private EntityManager em;
+    @PersistenceContext(unitName = "primary")
+	protected EntityManager em;
 
     @Inject
     private Event<Member> memberEventSrc;

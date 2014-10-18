@@ -42,11 +42,15 @@ import org.picketlink.annotations.PicketLink;
 public class Resources {
     // use @SuppressWarnings to tell IDE to ignore warnings about field not being referenced directly
     @SuppressWarnings("unused")
-    @Produces
-    @PicketLink
     @PersistenceContext(unitName="primary")
     protected EntityManager em;
 
+    @Produces
+    @PicketLink
+    public EntityManager getPicketLinkEntityManager() {
+        return em;
+    }
+    
     @Produces
     public Logger produceLog(InjectionPoint injectionPoint) {
         return Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());

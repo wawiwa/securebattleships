@@ -56,9 +56,9 @@ public class SimpleAuthenticator extends BaseAuthenticator {
         if ("jsmith".equals(credentials.getUserId()) &&
                 "abc123".equals(credentials.getPassword())) {
             setStatus(AuthenticationStatus.SUCCESS);
-            Player jsmith = new Player("jsmith");
+            User jsmith = new User("jsmith");
             setAccount(jsmith);
-            psl.createNewPlayerInDb(jsmith);
+            //psl.createNewPlayerInDb(jsmith);
             LOG.info("Authenticated!!!!");
         }
         // if user exists
