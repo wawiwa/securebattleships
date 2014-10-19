@@ -20,26 +20,19 @@ import java.io.Serializable;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.picketlink.credential.DefaultLoginCredentials;
-import org.picketlink.idm.IdentityManager;
-import org.picketlink.idm.PartitionManager;
 import org.picketlink.idm.credential.Password;
 import org.picketlink.idm.model.basic.User;
 
-import ejb.domain.Member;
 import ejb.domain.Player;
-import ejb.service.MemberRegistration;
 import ejb.service.PlayerServiceLocal;
 
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
@@ -48,7 +41,6 @@ import ejb.service.PlayerServiceLocal;
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
 
 @Model
-@SessionScoped
 public class UserController implements Serializable {
 
     /**
@@ -61,6 +53,9 @@ public class UserController implements Serializable {
 
     @Inject
     private PlayerServiceLocal psl;
+    
+    @Inject
+    private GameClientController gcc;
 
     @Produces
     @Named
@@ -78,21 +73,23 @@ public class UserController implements Serializable {
     	LOG.info("New User initialized!");
     }
 
-    public void register() throws Exception {
+    public String register() throws Exception {
     	LOG.info("register()!!!");
         try {
         	newUser.setLoginName(credentials.getUserId());
             Player player = psl.register(newUser,new Password(credentials.getPassword()));
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
             facesContext.addMessage(null, m);
-            Flash flash = facesContext.getExternalContext().getFlash(); 
-            flash.put("registeredPlayer", player);
-            facesContext.getExternalContext().redirect("dashboard.xhtml");
-            //initNewUser();
+            gcc.setPlayer(player);
+            LOG.info("player contents: "+gcc.getPlayer());
+//            facesContext.getExternalContext().redirect("dashboard.xhtml");
+            initNewUser();
+            return "dashboard?faces-redirect=true";
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
             facesContext.addMessage(null, m);
+            return "";
         }
     }
 
@@ -121,6 +118,14 @@ public class UserController implements Serializable {
 
 	public void setNewUser(User newUser) {
 		this.newUser = newUser;
+	}
+
+	public GameClientController getGcc() {
+		return gcc;
+	}
+
+	public void setGcc(GameClientController gcc) {
+		this.gcc = gcc;
 	}
     
     
