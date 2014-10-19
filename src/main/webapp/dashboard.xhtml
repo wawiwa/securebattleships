@@ -20,9 +20,14 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-<p>Dashboard 2</p>
+<p>Dashboard 4</p>
 
-	<h:outputLabel for="email" value="hello #{newUser.email}" />
+	<h:outputLabel for="name" value="#{GameClientController.player.name}" styleClass="loginLabel"/>
+	
+	<h:outputLabel for="testString" value="#{GameClientController.testString}" styleClass="loginLabel"/>
+
+	<h4>#{GameClientController.player.name}</h4>
+	<h4>#{GameClientController.testString}</h4>
 
 <br style="clear:both"/>
 
