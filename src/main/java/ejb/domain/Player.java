@@ -13,11 +13,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
+
 @NamedQueries({
 	@NamedQuery(name ="findUserByEmail", 
 			query="SELECT u FROM Player u WHERE u.email LIKE :email"),
-	@NamedQuery(name ="findUserReg", 
-			query="SELECT u FROM Player u WHERE u.email LIKE :email AND u.password LIKE :password"),
+//	@NamedQuery(name ="findUserReg", 
+//			query="SELECT u FROM Player u WHERE u.email LIKE :email AND u.password LIKE :password"),
 //	@NamedQuery(name ="findAllDataSourceByCategoryName",
 //			query="SELECT ds FROM DataSource ds WHERE ds.")
 })
@@ -30,14 +32,17 @@ public class Player implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String name;
-	private String password;
-	@Transient
-	private String password2;
-	private String email;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	  @JoinColumn(name="USER_ID",referencedColumnName="id")
+	private AccountTypeEntity user;
+
 	@OneToOne(fetch=FetchType.LAZY)
 	  @JoinColumn(name="GAME_STAT_ID",referencedColumnName="id")
 	private GameStat gameStat;
+	
+	private String email;
+	private String name;
 	private boolean online;
 	private boolean inGame;
 	
@@ -85,19 +90,7 @@ public class Player implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getPassword2() {
-		return password2;
-	}
-	
-	public void setPassword2(String password2) {
-		this.password2 = password2;
-	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -130,8 +123,7 @@ public class Player implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", name=" + name + ", password=" + password
-				+ ", password2=" + ", email=" + email + "]";
+		return "Player [id=" + id + ", name=" + name + ", email=" + email + "]";
 	}
 	
 	

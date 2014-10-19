@@ -12,7 +12,11 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
-import web.data.User_reg;
+import org.picketlink.idm.IdentityManager;
+import org.picketlink.idm.PartitionManager;
+import org.picketlink.idm.credential.Password;
+import org.picketlink.idm.model.basic.User;
+
 import ejb.dao.GameDaoLocal;
 import ejb.dao.GameStatDaoLocal;
 import ejb.dao.PlayerDaoLocal;
@@ -30,6 +34,10 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 	
 	@EJB GameService gs;
 	
+    @Inject
+    private PartitionManager partitionManager;
+  
+	
 	@Inject
 	private Logger LOGGER;
 	
@@ -39,6 +47,25 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 	
 	public void register(Player player) {
 		playerEvent.fire(this.createNewPlayerInDb(player));
+	}
+	
+	public Player register(User user,Password password) {
+		LOGGER.info("CREATING player!!");
+    	IdentityManager identityManager = this.partitionManager.createIdentityManager();
+    	identityManager.add(user);
+        identityManager.updateCredential(user, password);
+		Player player = new Player();
+		player.setEmail(user.getEmail());
+		player.setName(user.getLoginName());
+		GameStat gameStat = new GameStat();
+		gameStat.setLosses(0);
+		gameStat.setWins(0);
+		gameStat.setUnfinished(0);
+		gsdl.create(gameStat);
+		player.setGameStat(gameStat);
+		player = pdl.create(player);
+		playerEvent.fire(player);
+		return player;
 	}
 
 
@@ -68,12 +95,6 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 	public boolean doesPlayerExist(Player player) {
 		return this.doesPlayerExist(player.getEmail());
 	}
-
-	
-	public boolean checkPassword(User_reg user_reg) {
-		return pdl.findUserReg(user_reg);
-	}
-
 	
 	public boolean doesPlayerExist(String email) {
 		Player dbPlayer = pdl.findPlayerByEmail(email);
@@ -151,5 +172,7 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 	public PlayerDaoLocal getPdl() {
 		return pdl;
 	}
+	
+	
 
 }

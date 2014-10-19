@@ -16,13 +16,26 @@
  */
 package web.controller;
 
+import java.io.Serializable;
+import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.picketlink.credential.DefaultLoginCredentials;
+import org.picketlink.idm.IdentityManager;
+import org.picketlink.idm.PartitionManager;
+import org.picketlink.idm.credential.Password;
+import org.picketlink.idm.model.basic.User;
 
 import ejb.domain.Member;
 import ejb.domain.Player;
@@ -33,30 +46,49 @@ import ejb.service.PlayerServiceLocal;
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
-@Model
-public class UserController {
 
-    @Inject
+@Model
+@SessionScoped
+public class UserController implements Serializable {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Inject
     private FacesContext facesContext;
 
     @Inject
-    private PlayerServiceLocal usl;
+    private PlayerServiceLocal psl;
 
     @Produces
     @Named
-    private Player newUser;
-
+    private User newUser;
+    
+    @Inject 
+    private DefaultLoginCredentials credentials;
+    
+    @Inject
+    private Logger LOG;
+    
     @PostConstruct
     public void initNewUser() {
-        newUser = new Player();
+    	newUser = new User();
+    	LOG.info("New User initialized!");
     }
 
     public void register() throws Exception {
+    	LOG.info("register()!!!");
         try {
-            usl.register(newUser);
+        	newUser.setLoginName(credentials.getUserId());
+            Player player = psl.register(newUser,new Password(credentials.getPassword()));
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
             facesContext.addMessage(null, m);
-            initNewUser();
+            Flash flash = facesContext.getExternalContext().getFlash(); 
+            flash.put("registeredPlayer", player);
+            facesContext.getExternalContext().redirect("dashboard.xhtml");
+            //initNewUser();
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
@@ -82,5 +114,16 @@ public class UserController {
         // This is the root cause message
         return errorMessage;
     }
+
+	public User getNewUser() {
+		return newUser;
+	}
+
+	public void setNewUser(User newUser) {
+		this.newUser = newUser;
+	}
+    
+    
+    
 
 }

@@ -62,13 +62,13 @@ public class SimpleAuthenticator extends BaseAuthenticator {
             LOG.info("Authenticated!!!!");
         }
         // if user exists
-        if (psl.doesPlayerExist(credentials.getUserId())) {
+/*        if (psl.doesPlayerExist(credentials.getUserId())) {
         	// get user, check password
         	if (psl.findPlayerByEmail(credentials.getUserId()).getPassword().equals(credentials.getPassword())) {
         		setStatus(AuthenticationStatus.SUCCESS);
                // setAccount(usl.register(user);); PROBLEMS BEGIN HERE!
         	}
-        } else {
+        }*/ else {
             setStatus(AuthenticationStatus.FAILURE);
             facesContext.addMessage(null, new FacesMessage(
                     "Authentication Failure - The username or password you provided were invalid."));

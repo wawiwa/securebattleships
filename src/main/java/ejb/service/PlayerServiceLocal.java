@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import web.data.User_reg;
+import org.picketlink.idm.credential.Password;
+import org.picketlink.idm.model.basic.User;
+
 import ejb.dao.PlayerDaoLocal;
 import ejb.domain.Game;
 import ejb.domain.Player;
@@ -14,7 +16,7 @@ public interface PlayerServiceLocal {
 	
 	
 	public void register(Player player);
-	
+	public Player register(User user,Password password);
 	
 	
 	
@@ -62,14 +64,14 @@ public interface PlayerServiceLocal {
 	public boolean doesPlayerExist(Player player);
 	
 	/**
-	 * 
+	 * @deprecated
 	 * @param user_reg
 	 * @return
 	 * 
 	 * 'user_reg' is a non-persisted temporary placeholder that represents a person registering in the system.
 	 * 	This method checks if that user has already registered.
 	 */
-	public boolean checkPassword(User_reg user_reg);
+//	public boolean checkPassword(User_reg user_reg);
 	
 	/**
 	 * 

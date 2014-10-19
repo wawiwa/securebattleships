@@ -30,16 +30,16 @@
                 model class.</p>
             <h:panelGrid columns="3" columnClasses="titleCell">
                 <h:outputLabel for="name" value="Name:" />
-                <h:inputText id="name" value="#{newUser.name}" />
+                <h:inputText id="name" value="#{loginCredentials.userId}" />
                 <h:message for="name" errorClass="invalid" />
 
                 <h:outputLabel for="email" value="Email:" />
                 <h:inputText id="email" value="#{newUser.email}" />
                 <h:message for="email" errorClass="invalid" />
                 
-                <h:outputLabel for="password" value="Password:" />
-                <h:inputText id="password" value="#{newUser.password}" />
-                <h:message for="password" errorClass="invalid" />
+                <h:outputLabel for="password" value="Password" styleClass="loginLabel"/>
+        		<h:inputSecret id="password" value="#{loginCredentials.password}" redisplay="true"/>
+        		<h:message for="password" errorClass="invalid" />
 
             </h:panelGrid>
 
