@@ -20,12 +20,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-<p>This quickstart demonstrates how to implement a simple Authenticator</p>
-
 <ui:fragment rendered="#{identity.loggedIn}">
     <div>Congratulations! You are currently logged in as: <b>#{identity.account.loginName}</b></div>
-
+		
     <h:form>
+    	<h:commandButton value="Continue to Dashboard" action="#{loginController.gotoDashboard()}" />
         <h:commandButton id="logout" value="Log out" action="#{identity.logout}"/>
     </h:form>
 </ui:fragment>
@@ -36,6 +35,7 @@
     <div class="loginRow">
         <h:outputLabel for="name" value="Username" styleClass="loginLabel"/>
         <h:inputText id="name" value="#{loginCredentials.userId}"/>
+        
     </div>
 
     <div class="loginRow">
@@ -48,11 +48,11 @@
     </div>
 
     <div class="buttons">
-        <h:commandButton id="login" value="Login" action="#{identity.login}" styleClass="loginButton"/>
+        <h:commandButton id="login" value="Login" action="#{loginController.login}" styleClass="loginButton"/>
         <h:commandButton value="Register" action="registration?faces-redirect=true" />
     </div>
 
-    Tip: you can login with a username/password of jsmith/abc123.
+    Tip: you can login with a username/password of john/demo.
 
 </h:form>
 

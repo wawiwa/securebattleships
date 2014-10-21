@@ -16,10 +16,10 @@ package app.util;
  * limitations under the License.
  */
 
+import javax.enterprise.inject.Produces;
+
 import org.picketlink.idm.config.IdentityConfiguration;
 import org.picketlink.idm.config.IdentityConfigurationBuilder;
-
-import javax.enterprise.inject.Produces;
 
 /**
  * This bean produces the configuration for PicketLink IDM

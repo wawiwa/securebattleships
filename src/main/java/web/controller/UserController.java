@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
@@ -32,7 +31,6 @@ import org.picketlink.credential.DefaultLoginCredentials;
 import org.picketlink.idm.credential.Password;
 import org.picketlink.idm.model.basic.User;
 
-import ejb.domain.Player;
 import ejb.service.PlayerServiceLocal;
 
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
@@ -41,7 +39,7 @@ import ejb.service.PlayerServiceLocal;
 // http://sfwk.org/Documentation/WhatIsThePurposeOfTheModelAnnotation
 
 @Model
-public class UserController implements Serializable {
+public class UserController implements Serializable  {
 
     /**
 	 * 
@@ -53,9 +51,6 @@ public class UserController implements Serializable {
 
     @Inject
     private PlayerServiceLocal psl;
-    
-    @Inject
-    private GameClientController gcc;
 
     @Produces
     @Named
@@ -73,18 +68,16 @@ public class UserController implements Serializable {
     	LOG.info("New User initialized!");
     }
 
+
     public String register() throws Exception {
     	LOG.info("register()!!!");
         try {
         	newUser.setLoginName(credentials.getUserId());
-            Player player = psl.register(newUser,new Password(credentials.getPassword()));
+            psl.register(newUser,new Password(credentials.getPassword()));          
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
             facesContext.addMessage(null, m);
-            gcc.setPlayer(player);
-            LOG.info("player contents: "+gcc.getPlayer());
-//            facesContext.getExternalContext().redirect("dashboard.xhtml");
             initNewUser();
-            return "dashboard?faces-redirect=true";
+            return "home?faces-redirect=true";
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
@@ -120,13 +113,7 @@ public class UserController implements Serializable {
 		this.newUser = newUser;
 	}
 
-	public GameClientController getGcc() {
-		return gcc;
-	}
 
-	public void setGcc(GameClientController gcc) {
-		this.gcc = gcc;
-	}
     
     
     
