@@ -27,7 +27,6 @@ import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
 })
 @Entity
 @Table(name="PLAYERS")
-@XmlRootElement
 public class Player implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -38,7 +37,7 @@ public class Player implements Serializable {
 	
 	private String userId;
 
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	  @JoinColumn(name="GAME_STAT_ID",referencedColumnName="id")
 	private GameStat gameStat;
 	
