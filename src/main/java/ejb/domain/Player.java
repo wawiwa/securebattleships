@@ -11,6 +11,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
 
@@ -26,6 +27,7 @@ import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
 })
 @Entity
 @Table(name="PLAYERS")
+@XmlRootElement
 public class Player implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

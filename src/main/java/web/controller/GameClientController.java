@@ -28,13 +28,6 @@ public class GameClientController implements Serializable {
     
 	public void postInit(Player player){
 		this.player = player;
-	/*	this.user = new User();
-		user.setEmail("ted@gmail.com");
-		user.setName("ted");
-		user.setPassword("admin");
-		user.setOnline(true);
-		user.setInGame(false);
-		user.setGameStat(null);*/
 		
 		// This method should return a user object that corresponds to the passed in email
 		// which should be grabbed from the session object (somehow).  
@@ -43,12 +36,7 @@ public class GameClientController implements Serializable {
 		LOG.info("player in GCC: "+this.player);
 		
 		// Adding the user as a connected user on the game server
-//		GameServerController.AddConnectedUser(this.player);
-	}
-	
-	public String testController() {
-		LOG.info("testString().......");
-		return "From GameClientController!";
+		GameServerController.AddConnectedUser(this.player);
 	}
 
 	public Player getPlayer() {
