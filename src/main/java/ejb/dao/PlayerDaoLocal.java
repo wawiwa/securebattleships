@@ -9,6 +9,7 @@ public interface PlayerDaoLocal extends GenericDao<Player> {
 	
 	public Player findPlayerByEmail(String email);
 	
-//	public boolean findUserReg(User_reg user_reg);
+	public Player findPlayerByUserId(String userId);
+	
 
 }

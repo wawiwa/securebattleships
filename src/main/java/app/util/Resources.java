@@ -26,6 +26,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.picketlink.annotations.PicketLink;
+import org.picketlink.idm.PartitionManager;
 
 /**
  * This class uses CDI to alias Java EE resources, such as the persistence context, to CDI beans
@@ -44,12 +45,18 @@ public class Resources {
     @SuppressWarnings("unused")
     @PersistenceContext(unitName="primary")
     protected EntityManager em;
+//    protected PartitionManager partitionManager;
 
     @Produces
     @PicketLink
     public EntityManager getPicketLinkEntityManager() {
         return em;
     }
+    
+//    @Produces
+//    public PartitionManager producePartitionManager() {
+//    	return partitionManager;
+//    }
     
     @Produces
     public Logger produceLog(InjectionPoint injectionPoint) {

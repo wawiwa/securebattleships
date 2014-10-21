@@ -17,4 +17,6 @@
 
 -- You can use this file to load seed data into the database using SQL statements
 -- insert into Member (id, name, email, password, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', 'password', '2125551212')
--- insert into PLAYERS (id, name, email, password, phone_number) values ('', 'john.smith@mailinator.com', 'password') 
+-- insert into PLAYERS (id, name, email, password) values ('0', 'wade', 'wade@gmu.edu', 'password') 
+-- insert into PLAYERS (id, name, email, password) values ('1', 'jack', 'jack@gmu.edu', 'password')
+-- insert into PLAYERS (id, name, email, password) values ('2', 'thierry', 'thierry@gmu.edu', 'password')

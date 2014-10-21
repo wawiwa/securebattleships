@@ -1,7 +1,5 @@
 package ejb.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +13,7 @@ import javax.inject.Inject;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.PartitionManager;
 import org.picketlink.idm.credential.Password;
+import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
 import org.picketlink.idm.model.basic.User;
 
 import ejb.dao.GameDaoLocal;
@@ -22,7 +21,6 @@ import ejb.dao.GameStatDaoLocal;
 import ejb.dao.PlayerDaoLocal;
 import ejb.domain.Game;
 import ejb.domain.GameStat;
-import ejb.domain.Member;
 import ejb.domain.Player;
 
 @Stateless
@@ -50,11 +48,12 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 	}
 	
 	public Player register(User user,Password password) {
-		LOGGER.info("CREATING player!!");
+		LOGGER.info("CREATING player!! "+user.getId());
     	IdentityManager identityManager = this.partitionManager.createIdentityManager();
     	identityManager.add(user);
         identityManager.updateCredential(user, password);
 		Player player = new Player();
+		player.setUserId(user.getId()); 
 		player.setEmail(user.getEmail());
 		player.setName(user.getLoginName());
 		GameStat gameStat = new GameStat();
@@ -101,6 +100,7 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 		if (dbPlayer.getEmail() == null || dbPlayer.getEmail().isEmpty()) return false;
 		return true;
 	}
+
 
 	
 	public Game createNewGame(Player player1, Player player2) {

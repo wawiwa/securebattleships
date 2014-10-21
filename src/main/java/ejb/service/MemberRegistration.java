@@ -16,7 +16,7 @@
  */
 package ejb.service;
 
-import ejb.domain.Member;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
@@ -24,7 +24,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import java.util.logging.Logger;
+import ejb.domain.Member;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
 @Stateless

@@ -11,13 +11,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
 
 @NamedQueries({
 	@NamedQuery(name ="findUserByEmail", 
 			query="SELECT u FROM Player u WHERE u.email LIKE :email"),
+	@NamedQuery(name ="findPlayerByUserId", 
+			query="SELECT p FROM Player p WHERE p.userId LIKE :userId"),
 //	@NamedQuery(name ="findUserReg", 
 //			query="SELECT u FROM Player u WHERE u.email LIKE :email AND u.password LIKE :password"),
 //	@NamedQuery(name ="findAllDataSourceByCategoryName",
@@ -25,6 +27,7 @@ import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
 })
 @Entity
 @Table(name="PLAYERS")
+@XmlRootElement
 public class Player implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -33,9 +36,7 @@ public class Player implements Serializable {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToOne(fetch=FetchType.LAZY)
-	  @JoinColumn(name="USER_ID",referencedColumnName="id")
-	private AccountTypeEntity user;
+	private String userId;
 
 	@OneToOne(fetch=FetchType.LAZY)
 	  @JoinColumn(name="GAME_STAT_ID",referencedColumnName="id")
@@ -97,6 +98,20 @@ public class Player implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
+
+	public String getUserId() {
+		return this.userId;
+	}
+
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
 
 	@Override
 	public int hashCode() {

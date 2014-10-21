@@ -8,10 +8,10 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import web.data.ConnectedPlayer;
 import ejb.domain.Game;
 import ejb.domain.Player;
 import ejb.service.PlayerServiceLocal;
-import web.data.ConnectedPlayer;
 
 @ApplicationScoped
 public class GameServerController {
