@@ -117,6 +117,19 @@
     <artifactId>primefaces</artifactId>  
     <version>5.0.RC1</version>  
 	</dependency> 
+	
+		<dependency>  
+		    <groupId>org.primefaces.themes</groupId>  
+		    <artifactId>all-themes</artifactId>  
+		    <version>1.0.10</version>  
+		</dependency>
+	
+			<!-- Primefaces ext api, transient dependency on primefaces repo. Used for page layouts. -->
+		<dependency>
+	        <groupId>org.primefaces.extensions</groupId>
+	        <artifactId>primefaces-extensions</artifactId>
+	        <version>2.0.0</version>
+    	</dependency>
 
 <!-- Import the PicketLink API, we deploy this as library with the application,
       and can compile against it -->
