@@ -16,13 +16,10 @@
  */
 package web.controller;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -30,8 +27,6 @@ import javax.inject.Named;
 
 import org.picketlink.Identity;
 import org.picketlink.Identity.AuthenticationResult;
-import org.picketlink.annotations.PicketLink;
-import org.picketlink.authentication.BaseAuthenticator;
 
 import ejb.domain.Player;
 import ejb.service.PlayerServiceLocal;
@@ -79,6 +74,7 @@ public class LoginController implements Serializable {
 				// pass a player to the gcc
 				LOG.info("Player found: "+player);
 				gcc.postInit(player);
+				LOG.info("PostInit();");
 				//facesContext.getExternalContext().redirect("dashboard.xhtml");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

@@ -11,9 +11,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
 
 @NamedQueries({
 	@NamedQuery(name ="findUserByEmail", 
@@ -45,6 +42,7 @@ public class Player implements Serializable {
 	private String name;
 	private boolean online;
 	private boolean inGame;
+	private String gameStateJson;
 	
 	public Long getId() {
 		return id;
@@ -98,7 +96,15 @@ public class Player implements Serializable {
 		this.email = email;
 	}
 	
-	
+	public String getGameStateJson() {
+		return gameStateJson;
+	}
+
+
+	public void setGameStateJson(String gameStateJson) {
+		this.gameStateJson = gameStateJson;
+	}
+
 
 	public String getUserId() {
 		return this.userId;
@@ -116,9 +122,12 @@ public class Player implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -128,17 +137,21 @@ public class Player implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Player other = (Player) obj;
-		if (email == null) {
-			if (other.email != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
+
+
+
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", name=" + name + ", email=" + email + "]";
+		return "Player [id=" + id + ", name=" + name + "]";
 	}
+
 	
 	
 	

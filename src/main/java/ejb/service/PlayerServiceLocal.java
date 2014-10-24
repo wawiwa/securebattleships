@@ -7,6 +7,8 @@ import javax.ejb.Local;
 import org.picketlink.idm.credential.Password;
 import org.picketlink.idm.model.basic.User;
 
+import ejb.dao.GameDaoLocal;
+import ejb.dao.GameStatDaoLocal;
 import ejb.dao.PlayerDaoLocal;
 import ejb.domain.Game;
 import ejb.domain.Player;
@@ -16,9 +18,10 @@ public interface PlayerServiceLocal {
 	
 	
 	public void register(Player player);
+	
 	public Player register(User user,Password password);
-	
-	
+
+	public GameStatDaoLocal getGsdl();
 	
 	
 	/**
@@ -82,25 +85,6 @@ public interface PlayerServiceLocal {
 	 */
 	public boolean doesPlayerExist(String email);
 	
-	/**
-	 * 
-	 * @param user1
-	 * @param user2
-	 * @return Game
-	 * 
-	 * Instantiates a new game with current system time.
-	 * 
-	 */
-	public Game createNewGame(Player player1, Player player2); 
-	
-	/**
-	 * 
-	 * @param user
-	 * @return List<Game>
-	 * 
-	 * Returns a list of games played by a specific user.
-	 */
-	public List<Game> getAllPlayerGames(Player player);
 	
 	/**
 	 * 
@@ -117,24 +101,7 @@ public interface PlayerServiceLocal {
 	 * Returns a list of all users currently flagged as 'offline'.
 	 */
 	public List<Player> getPlayersOffline();
-	
-	/**
-	 * 
-	 * @return List<User>
-	 * 
-	 * Returns a list of all users currently playing a game.
-	 */
-	public List<Player> getPlayersInGame();
-	
-	/**
-	 * 
-	 * @param user
-	 * 
-	 * Updates a user's state in the db.
-	 */
-	public void updatePlayerState(Player player);
-	
-	public GameService getGs();
+
 	
 	public PlayerDaoLocal getPdl();
 	

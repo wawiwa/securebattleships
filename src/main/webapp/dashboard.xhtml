@@ -21,14 +21,18 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui">
 
-        <h1>Welcome to Secure BattleShips!</h1>
+<h:head> <title>SecureBattleships</title> </h:head>
 
+<h:body>
+        <h1>Welcome to Secure BattleShips! <h:outputText id="test" value="#{gameClientController.me.name}" /></h1>
+
+		<h3>You have: <h:outputText id="test1" value="#{gameClientController.me.gameStat.wins}" /> wins.</h3>
 
         <h:form id="dashboard">
-			<h:outputText id="test" value="#{gameClientController.player.name}" />
-			<h:outputText id="test1" value="#{gameClientController.player.gameStat.wins}" />
 			
-			<p:dataTable var="gs" value="#{gameClientController.player.gameStat}">
+			<p:spacer height="20" />
+		
+			<p:dataTable id="dt1" var="gs" value="#{gameClientController.me.gameStat}">
 			    <p:column headerText="Losses">
 			        <h:outputText value="#{gs.losses}" />
 			    </p:column>
@@ -42,6 +46,39 @@
 			    </p:column>
 			</p:dataTable>
 			
+			<p:spacer height="20" />
+			
+			<p:dataTable id="dt2" var="game" value="#{activeGames}">
+			    <p:column headerText="Player1">
+			        <h:outputText value="#{game.player1.name}" />
+			    </p:column>
+			 
+			    <p:column headerText="Player2">
+			        <h:outputText value="#{game.player2.name}" />
+			    </p:column>
+			 
+			    <p:column headerText="Game Created">
+			        <h:outputText value="#{game.gameCreated}" />
+			    </p:column>
+			    
+			    <p:column headerText="Outcome">
+			        <h:outputText value="#{game.winner.name}" />
+			    </p:column>
+			</p:dataTable>
+			
+			<p:spacer height="20" />
+			
+			<p:dataTable id="dt3" var="player" value="#{gameClientController.playersOnline}">
+			    <p:column headerText="Players">
+			        <h:outputText value="#{player.name}" />
+			    </p:column>
+			 
+			    <p:column headerText="Status">
+			        <h:outputText value="#{player.inGame}" />
+			    </p:column>
+
+			</p:dataTable>
+			
         </h:form>
-        
+</h:body>      
 </html>

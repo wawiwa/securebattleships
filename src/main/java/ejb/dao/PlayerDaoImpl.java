@@ -7,8 +7,6 @@ import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
-
 import ejb.domain.Player;
 
 @Stateless

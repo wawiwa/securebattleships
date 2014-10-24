@@ -8,10 +8,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
+@NamedQueries({
+	@NamedQuery(name ="findGameByPlayer", 
+			query="SELECT u FROM Player u WHERE u.email LIKE :email"),
+})
 @Entity
 @Table(name="GAMES")
 public class Game implements Serializable {
@@ -23,19 +28,19 @@ public class Game implements Serializable {
 	
 	@Id @GeneratedValue
 	private long id;
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	  @JoinColumn(name="PLAYER1_ID")
 	private Player player1;
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	  @JoinColumn(name="PLAYER2_ID")
 	private Player player2;
 	private Date gameCreated;
 	private boolean unfinished;
+	private boolean active;
 	private Player winner; // null if unfinished
 	private Player loser; // null if unfinished
-	private String player1json;
-	private String player2json;
-	@OneToOne(fetch=FetchType.LAZY)
+	
+	@OneToOne(fetch=FetchType.EAGER)
 	  @JoinColumn(name="LAST_MOVE_USER_ID")
 	private Player lastUserToMove;
 	public long getId() {
@@ -80,23 +85,17 @@ public class Game implements Serializable {
 	public void setLoser(Player loser) {
 		this.loser = loser;
 	}
-	public String getPlayer1json() {
-		return player1json;
-	}
-	public void setPlayer1json(String player1json) {
-		this.player1json = player1json;
-	}
-	public String getPlayer2json() {
-		return player2json;
-	}
-	public void setPlayer2json(String player2json) {
-		this.player2json = player2json;
-	}
 	public Player getLastUserToMove() {
 		return lastUserToMove;
 	}
 	public void setLastUserToMove(Player lastUserToMove) {
 		this.lastUserToMove = lastUserToMove;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 	
