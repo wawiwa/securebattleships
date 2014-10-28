@@ -96,8 +96,10 @@
 
 			</p:dataTable>
 			
-			<p:commandButton value="Make a move" id="ajax" update="last" actionListener="#{gameClientController.makeMyMove()}" styleClass="ui-priority-primary" />
 			
+			
+			<p:commandButton value="Make a move" id="ajax" update="last" actionListener="#{gameClientController.makeMyMove()}" styleClass="ui-priority-primary" />
+			  <p:poll interval="3" update="last" />
 			<h2>Last player to move: <h:outputText id="last" value="#{gameClientController.getLastPlayerToMove()}" /></h2>
 			
         </h:form>

@@ -52,6 +52,7 @@ public class GameServiceImpl implements GameServiceLocal {
 	public Game startNewGame(Player you, Player opponent) {
 		Game game = new Game();
 		game.setActive(true);
+		
 		game.setGameCreated(new Date());
 		game.setPlayer1(you);
 		game.setPlayer2(opponent);
@@ -59,6 +60,7 @@ public class GameServiceImpl implements GameServiceLocal {
 		opponent.setInGame(true);
 		psl.getPdl().update(you);
 		psl.getPdl().update(opponent);
+		
 		game = gdl.create(game);
 		gameEventSrvc.fire(game);
 		return game;
