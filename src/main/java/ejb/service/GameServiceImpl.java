@@ -36,7 +36,6 @@ public class GameServiceImpl implements GameServiceLocal {
 	}
 
 	public List<Game> getAllActiveGamesFromDb() {
-		LOG.info("Current Games from Db: "+gdl.getAll());
 		List<Game> temp = new ArrayList<Game>();
 		for (Game g : gdl.getAll()) {
 			if (g.isActive()) {
@@ -89,7 +88,6 @@ public class GameServiceImpl implements GameServiceLocal {
 		player.setGameStateJson(gameState);
 		psl.getPdl().update(player);
 		gdl.update(g);
-		gameEventSrvc.fire(g);
 		return true;
 	}
 	

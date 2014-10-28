@@ -73,7 +73,7 @@ public class GameClientController implements Serializable {
 	
 	public boolean makeMyMove() {
 		if (gsl.makeMyMove(this.me, "JSON GAME STATE")) {
-			LOG.info(me+" just made my move");
+			LOG.info(me+" moves.");
 			return true;
 		}
 		else {
