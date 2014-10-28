@@ -17,7 +17,9 @@ import ejb.domain.Player;
 public interface PlayerServiceLocal {
 	
 	
-	public void register(Player player);
+	public void logsIn(Player player);
+	
+	public void logsOut(Player player);
 	
 	public Player register(User user,Password password);
 
@@ -33,7 +35,7 @@ public interface PlayerServiceLocal {
 	 * 	the initialized gameStat with this user.
 	 * 
 	 */
-	public Player createNewPlayerInDb(Player player);
+//	public Player createNewPlayerInDb(Player player);
 	
 	/**
 	 * 

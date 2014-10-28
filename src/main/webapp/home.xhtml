@@ -25,7 +25,7 @@
 		
     <h:form>
     	<h:commandButton value="Continue to Dashboard" action="#{loginController.gotoDashboard()}" />
-        <h:commandButton id="logout" value="Log out" action="#{identity.logout}"/>
+        <h:commandButton id="logout" value="Log out" action="#{loginController.logout()}"/>
     </h:form>
 </ui:fragment>
 

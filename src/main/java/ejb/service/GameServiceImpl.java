@@ -75,13 +75,17 @@ public class GameServiceImpl implements GameServiceLocal {
 		return null;
 	}
 	
-	public void makeMyMove(Player player, String gameState) {
+	public boolean makeMyMove(Player player, String gameState) {
+		Game g = this.getActiveGame(player);
+		if (g.getLastUserToMove() != null && g.getLastUserToMove().equals(player)) {
+			return false; // other player hasn't moved yet.
+		}
+		g.setLastUserToMove(player);
 		player.setGameStateJson(gameState);
 		psl.getPdl().update(player);
-		Game g = this.getActiveGame(player);
-		g.setLastUserToMove(player);
 		gdl.update(g);
 		gameEventSrvc.fire(g);
+		return true;
 	}
 	
 	public List<Game> getAllPlayerGames(Player player) {
