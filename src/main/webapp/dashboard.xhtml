@@ -30,7 +30,7 @@
 
         <h:form id="dashboard">
         
-   <p:dataTable id="radioDT" var="opponent" value="#{onlinePlayers}" selection="#{gameClientController.opponent}" rowKey="#{opponent.id}">
+   <p:dataTable id="radioDT" var="opponent" value="#{onlinePlayers}" selection="#{gameClientController.selectedOpponent}" rowKey="#{opponent.id}">
         <f:facet name="header">
             RadioButton
         </f:facet>
@@ -43,7 +43,6 @@
         </p:column>
         <f:facet name="footer">
         	<p:commandButton value="Start a Game" id="startGame" actionListener="#{gameClientController.startGame()}" styleClass="ui-priority-primary" />
-<!--             <p:commandButton process="radioDT" update=":form:carDetail" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" /> -->
         </f:facet>
     </p:dataTable>
 			

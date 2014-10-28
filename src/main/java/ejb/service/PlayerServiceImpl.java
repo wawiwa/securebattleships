@@ -35,8 +35,8 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 	private Logger LOGGER;
 	
 	
-//	@Inject
-//    private Event<Player> userEvent;
+	@Inject
+    private Event<Player> userEvent;
 	
 	@Inject @Online
     private Event<Player> playerEvent;
@@ -54,10 +54,10 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 	}
 	
 	public Player register(User user,Password password) {
-		LOGGER.info("CREATING player!! "+user.getId());
     	IdentityManager identityManager = this.partitionManager.createIdentityManager();
     	identityManager.add(user);
         identityManager.updateCredential(user, password);
+        LOGGER.info("CREATING player!! "+user.getId());
 		Player player = new Player();
 		player.setUserId(user.getId()); 
 		player.setEmail(user.getEmail());
@@ -70,7 +70,7 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 		gsdl.create(gameStat);
 		player.setGameStat(gameStat);
 		player = pdl.create(player);
-//		userEvent.fire(player);
+		userEvent.fire(player);
 		return player;
 	}
 

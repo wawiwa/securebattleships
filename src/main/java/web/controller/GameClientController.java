@@ -35,7 +35,8 @@ public class GameClientController implements Serializable {
     
     private Player me;
     
-    private Player opponent;
+    // Do NOT rely on this to get your opponent, use the method getMyOpponent()
+    private Player selectedOpponent;
 
 
 	public void postInit(Player player){
@@ -60,9 +61,8 @@ public class GameClientController implements Serializable {
 	}
 	
 	public void startGame() {
-		LOG.info("Starting game with: "+this.opponent);
-		//this.setOpponent(opponent);
-		gsl.startNewGame(me, opponent);
+		LOG.info("Starting game with: "+this.selectedOpponent);
+		gsl.startNewGame(me, selectedOpponent);
 	}
 	
 	public Player getLastPlayerToMove() {
@@ -77,7 +77,7 @@ public class GameClientController implements Serializable {
 			return true;
 		}
 		else {
-			LOG.info("Your opponent, "+opponent+" is still moving.");
+			LOG.info("Your opponent, "+this.getMyOpponent()+" is still moving.");
 			return false;
 		}
 	}
@@ -105,15 +105,19 @@ public class GameClientController implements Serializable {
 	public Player getMe() {
 		return me;
 	}
-	
-	public Player getOpponent() {
-		return opponent;
-	}
-	
-	public void setOpponent(Player opponent) {
-		this.opponent = opponent;
+
+	public Player getSelectedOpponent() {
+		return selectedOpponent;
 	}
 
+	public void setSelectedOpponent(Player selectedOpponent) {
+		this.selectedOpponent = selectedOpponent;
+	}
+
+	
+	public Player getMyOpponent() {
+		return gsl.getMyOpponent(me);
+	}
 	
 	
 	

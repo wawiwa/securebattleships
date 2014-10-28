@@ -29,6 +29,11 @@ public class GameServiceImpl implements GameServiceLocal {
 	
 	@EJB GameDaoLocal gdl;
 	
+	public Player getMyOpponent(Player me) {
+		Game g = this.getActiveGame(me);
+		if (g.getPlayer1().equals(me)) return g.getPlayer2();
+		else return g.getPlayer1();
+	}
 
 	public List<Game> getAllActiveGamesFromDb() {
 		LOG.info("Current Games from Db: "+gdl.getAll());

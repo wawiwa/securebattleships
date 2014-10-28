@@ -14,6 +14,7 @@ import ejb.domain.Player;
 public interface GameServiceLocal {
 	
 
+	public Player getMyOpponent(Player me);
 	public List<Game> getAllActiveGamesFromDb();
 	public List<Game> getAllGames();
 	public Game startNewGame(Player you, Player opponent);
