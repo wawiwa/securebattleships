@@ -97,6 +97,12 @@ public class Game implements Serializable {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	@Override
+	public String toString() {
+		return "Game [id=" + id + ", player1=" + player1 + ", player2="
+				+ player2 + "]";
+	}
+	
 	
 	
 }

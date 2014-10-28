@@ -14,6 +14,7 @@ import org.picketlink.idm.PartitionManager;
 import org.picketlink.idm.credential.Password;
 import org.picketlink.idm.model.basic.User;
 
+import web.data.Online;
 import ejb.dao.GameDaoLocal;
 import ejb.dao.GameStatDaoLocal;
 import ejb.dao.PlayerDaoLocal;
@@ -35,21 +36,33 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 	
 	
 	@Inject
+    private Event<Player> userEvent;
+	
+	@Inject @Online
     private Event<Player> playerEvent;
 
-	public void register(Player player) {
-		playerEvent.fire(this.createNewPlayerInDb(player));
+	public void logsIn(Player player) {
+		player.setOnline(true);
+		pdl.update(player);
+		playerEvent.fire(player);
+	}
+	
+	public void logsOut(Player player) {
+		player.setOnline(false);
+		pdl.update(player);
+		playerEvent.fire(player);
 	}
 	
 	public Player register(User user,Password password) {
-		LOGGER.info("CREATING player!! "+user.getId());
     	IdentityManager identityManager = this.partitionManager.createIdentityManager();
     	identityManager.add(user);
         identityManager.updateCredential(user, password);
+        LOGGER.info("CREATING player!! "+user.getId());
 		Player player = new Player();
 		player.setUserId(user.getId()); 
 		player.setEmail(user.getEmail());
 		player.setName(user.getLoginName());
+		player.setInGame(false);
 		GameStat gameStat = new GameStat();
 		gameStat.setLosses(0);
 		gameStat.setWins(0);
@@ -57,21 +70,8 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 		gsdl.create(gameStat);
 		player.setGameStat(gameStat);
 		player = pdl.create(player);
-		playerEvent.fire(player);
+		userEvent.fire(player);
 		return player;
-	}
-
-
-	public Player createNewPlayerInDb(Player player) {
-		LOGGER.info("CREATING player!!");
-		GameStat gameStat = new GameStat();
-		gameStat.setLosses(0);
-		gameStat.setWins(0);
-		gameStat.setUnfinished(0);
-		gsdl.create(gameStat);
-		LOGGER.info("gamestat persisted: "+gameStat.getId());
-		player.setGameStat(gameStat);
-		return pdl.create(player);
 	}
 
 	

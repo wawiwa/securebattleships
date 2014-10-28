@@ -14,12 +14,13 @@ import ejb.domain.Player;
 public interface GameServiceLocal {
 	
 
+	public Player getMyOpponent(Player me);
 	public List<Game> getAllActiveGamesFromDb();
 	public List<Game> getAllGames();
 	public Game startNewGame(Player you, Player opponent);
 	public void makeGameInactive(Game game);
 	public Game getActiveGame(Player player);
-	public void makeMyMove(Player player, String gameState);
+	public boolean makeMyMove(Player player, String gameState);
 	public List<Game> getAllPlayerGames(Player player);
 	public List<Player> getPlayersInGame();
 	public GameDaoLocal getGdl();

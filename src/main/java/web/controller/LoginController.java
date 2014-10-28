@@ -55,6 +55,12 @@ public class LoginController implements Serializable {
     
     @Inject
     private GameClientController gcc;
+    
+    public void logout() {
+    	LOG.info("logout() called");
+    	psl.logsOut(psl.getPdl().findPlayerByUserId(identity.getAccount().getId()));
+    	identity.logout();
+    }
 
     public void login() {
     	LOG.info("login() called");
@@ -71,6 +77,7 @@ public class LoginController implements Serializable {
 			try {
 				LOG.info("accountId: "+identity.getAccount().getId());
 				Player player = psl.getPdl().findPlayerByUserId(identity.getAccount().getId());
+				psl.logsIn(player);
 				// pass a player to the gcc
 				LOG.info("Player found: "+player);
 				gcc.postInit(player);

@@ -31,6 +31,7 @@ import ejb.domain.Player;
 import ejb.service.PlayerServiceLocal;
 
 @RequestScoped
+// A list of ALL users
 public class UserListProducer {
 	
 	@Inject

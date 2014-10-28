@@ -29,9 +29,13 @@ public class GameServiceImpl implements GameServiceLocal {
 	
 	@EJB GameDaoLocal gdl;
 	
+	public Player getMyOpponent(Player me) {
+		Game g = this.getActiveGame(me);
+		if (g.getPlayer1().equals(me)) return g.getPlayer2();
+		else return g.getPlayer1();
+	}
 
 	public List<Game> getAllActiveGamesFromDb() {
-		LOG.info("Current Games from Db: "+gdl.getAll());
 		List<Game> temp = new ArrayList<Game>();
 		for (Game g : gdl.getAll()) {
 			if (g.isActive()) {
@@ -75,13 +79,16 @@ public class GameServiceImpl implements GameServiceLocal {
 		return null;
 	}
 	
-	public void makeMyMove(Player player, String gameState) {
+	public boolean makeMyMove(Player player, String gameState) {
+		Game g = this.getActiveGame(player);
+		if (g.getLastUserToMove() != null && g.getLastUserToMove().equals(player)) {
+			return false; // other player hasn't moved yet.
+		}
+		g.setLastUserToMove(player);
 		player.setGameStateJson(gameState);
 		psl.getPdl().update(player);
-		Game g = this.getActiveGame(player);
-		g.setLastUserToMove(player);
 		gdl.update(g);
-		gameEventSrvc.fire(g);
+		return true;
 	}
 	
 	public List<Game> getAllPlayerGames(Player player) {

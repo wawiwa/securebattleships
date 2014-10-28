@@ -29,6 +29,22 @@
 		<h3>You have: <h:outputText id="test1" value="#{gameClientController.me.gameStat.wins}" /> wins.</h3>
 
         <h:form id="dashboard">
+        
+   <p:dataTable id="radioDT" var="opponent" value="#{onlinePlayers}" selection="#{gameClientController.selectedOpponent}" rowKey="#{opponent.id}">
+        <f:facet name="header">
+            RadioButton
+        </f:facet>
+        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+        <p:column headerText="Id">
+            <h:outputText value="#{opponent.id}" />
+        </p:column>
+        <p:column headerText="Name">
+            <h:outputText value="#{opponent.name}" />
+        </p:column>
+        <f:facet name="footer">
+        	<p:commandButton value="Start a Game" id="startGame" actionListener="#{gameClientController.startGame()}" styleClass="ui-priority-primary" />
+        </f:facet>
+    </p:dataTable>
 			
 			<p:spacer height="20" />
 		
@@ -67,6 +83,7 @@
 			</p:dataTable>
 			
 			<p:spacer height="20" />
+
 			
 			<p:dataTable id="dt3" var="player" value="#{gameClientController.playersOnline}">
 			    <p:column headerText="Players">
@@ -78,6 +95,10 @@
 			    </p:column>
 
 			</p:dataTable>
+			
+			<p:commandButton value="Make a move" id="ajax" update="last" actionListener="#{gameClientController.makeMyMove()}" styleClass="ui-priority-primary" />
+			
+			<h2>Last player to move: <h:outputText id="last" value="#{gameClientController.getLastPlayerToMove()}" /></h2>
 			
         </h:form>
 </h:body>      
