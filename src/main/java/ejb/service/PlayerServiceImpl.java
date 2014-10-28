@@ -120,6 +120,9 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 		pdl.update(player);
 	}
 
+	public Player findPlayerByName(Player player) {
+		return pdl.findPlayerByName(player.getName());
+	}
 	
 	public Player findPlayerByEmail(String email) {
 		Player player = new Player();

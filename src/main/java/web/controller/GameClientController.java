@@ -62,7 +62,7 @@ public class GameClientController implements Serializable {
 	
 	public void startGame() {
 		LOG.info("Starting game with: "+this.selectedOpponent);
-		gsl.startNewGame(me, selectedOpponent);
+		gsl.startNewGame(me, psl.findPlayerByName(selectedOpponent));
 	}
 	
 	public Player getLastPlayerToMove() {

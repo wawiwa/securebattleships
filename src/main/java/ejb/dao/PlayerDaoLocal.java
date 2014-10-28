@@ -11,5 +11,6 @@ public interface PlayerDaoLocal extends GenericDao<Player> {
 	
 	public Player findPlayerByUserId(String userId);
 	
+	public Player findPlayerByName(String name);
 
 }
