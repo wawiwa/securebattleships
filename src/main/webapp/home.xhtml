@@ -51,9 +51,10 @@
         <h:commandButton id="login" value="Login" action="#{loginController.login}" styleClass="loginButton"/>
         <h:commandButton value="Register" action="registration?faces-redirect=true" />
     </div>
-
-    Tip: you can login with a username/password of john/demo.
-
+    
+	<p:commandButton value="Init Users" id="startGame" actionListener="#{SecurityInitializer.initPlayers()}" styleClass="ui-priority-primary" />
+	
+	Login with: wade/wade, jack/jack or thierry/thierry
 </h:form>
 
 <br style="clear:both"/>

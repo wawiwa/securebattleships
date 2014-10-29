@@ -26,7 +26,9 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.faces.bean.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.PartitionManager;
@@ -36,6 +38,11 @@ import org.picketlink.idm.model.basic.Group;
 import org.picketlink.idm.model.basic.Role;
 import org.picketlink.idm.model.basic.User;
 
+import ejb.domain.GameStat;
+import ejb.domain.Player;
+import ejb.service.PlayerServiceImpl;
+import ejb.service.PlayerServiceLocal;
+
 /**
  * This startup bean creates a number of default users, groups and roles when the application is started.
  * 
@@ -43,6 +50,8 @@ import org.picketlink.idm.model.basic.User;
  */
 @Singleton
 @Startup
+@ApplicationScoped
+@Named("SecurityInitializer")
 public class SecurityInitializer {
 	
 	@Inject
@@ -50,20 +59,41 @@ public class SecurityInitializer {
 
     @Inject
     private PartitionManager partitionManager;
+    
+    @Inject
+    private PlayerServiceLocal psl;
 
+    public void initPlayers() {
+    	User wade = new User("wade");
+    	wade.setEmail("wade@gmu.edu");
+        psl.register(wade,new Password("wade")); 
+        
+    	User jack = new User("jack");
+    	jack.setEmail("jack@gmu.edu");
+    	psl.register(jack,new Password("jack")); 
+        
+    	User thierry = new User("thierry");
+    	thierry.setEmail("thierry@gmu.edu");
+    	psl.register(thierry,new Password("thierry")); 
+    }
+    
     @PostConstruct
     public void create() {
 
     	System.out.println("INITIALLINSIJIOJDSKL:DFJKL:JFKL:");
     	LOG.info("initializing security");
     	
+    	IdentityManager identityManager = this.partitionManager.createIdentityManager();
+  
+        
+        
         // Create user john
         User john = new User("john");
         john.setEmail("john@acme.com");
         john.setFirstName("John");
         john.setLastName("Smith");
 
-        IdentityManager identityManager = this.partitionManager.createIdentityManager();
+        
 
         identityManager.add(john);
         identityManager.updateCredential(john, new Password("demo"));
@@ -115,6 +145,5 @@ public class SecurityInitializer {
 	public void setPartitionManager(PartitionManager partitionManager) {
 		this.partitionManager = partitionManager;
 	}
-    
     
 }

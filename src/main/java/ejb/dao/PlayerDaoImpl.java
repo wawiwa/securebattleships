@@ -46,15 +46,19 @@ public class PlayerDaoImpl extends GenericDaoImpl<Player> implements PlayerDaoLo
 		return player;
     }
     
-//    public boolean findUserReg(User_reg user_reg) {
-//    	try {
-//			em.createNamedQuery("findUserReg")
-//				.setParameter("email", user_reg.getEmail())
-//				.setParameter("password", user_reg.getPassword()).getSingleResult();
-//    	} catch (NoResultException nre) {
-//    		return false;
-//    	}
-//		return true;
-//    }
+    public Player findPlayerByName(String name) {
+    	Player player = null;
+    	try {
+    		
+    		Query query = em.createNamedQuery("findPlayerByName").setParameter("name", name);
+    		LOG.info("query: "+query); //useless
+			player = (Player) query.getSingleResult();
+			
+    	} catch (NoResultException nre) {
+    		return new Player();
+    	}
+		return player;
+    }
+    
     
 }

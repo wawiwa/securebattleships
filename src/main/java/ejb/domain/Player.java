@@ -17,6 +17,8 @@ import javax.persistence.Table;
 			query="SELECT u FROM Player u WHERE u.email LIKE :email"),
 	@NamedQuery(name ="findPlayerByUserId", 
 			query="SELECT p FROM Player p WHERE p.userId LIKE :userId"),
+	@NamedQuery(name ="findPlayerByName", 
+			query="SELECT p FROM Player p WHERE p.name LIKE :name"),
 //	@NamedQuery(name ="findUserReg", 
 //			query="SELECT u FROM Player u WHERE u.email LIKE :email AND u.password LIKE :password"),
 //	@NamedQuery(name ="findAllDataSourceByCategoryName",

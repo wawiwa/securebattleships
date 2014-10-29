@@ -50,6 +50,8 @@ public interface PlayerServiceLocal {
 	
 	public Player findPlayerByEmail(String email);
 	
+	public Player findPlayerByName(Player player);
+	
 	/**
 	 * 
 	 * @param user
