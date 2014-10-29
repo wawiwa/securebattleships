@@ -113,7 +113,6 @@ public class GameClientController implements Serializable {
 	public void setSelectedOpponent(Player selectedOpponent) {
 		this.selectedOpponent = selectedOpponent;
 	}
-
 	
 	public Player getMyOpponent() {
 		return gsl.getMyOpponent(me);

@@ -8,6 +8,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.PartitionManager;
@@ -29,8 +31,7 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 	
     @Inject
     private PartitionManager partitionManager;
-  
-	
+    
 	@Inject
 	private Logger LOGGER;
 	
@@ -70,7 +71,7 @@ public class PlayerServiceImpl implements PlayerServiceLocal {
 		gsdl.create(gameStat);
 		player.setGameStat(gameStat);
 		player = pdl.create(player);
-		userEvent.fire(player);
+		if (userEvent != null) userEvent.fire(player);
 		return player;
 	}
 
