@@ -54,6 +54,9 @@ public class Player implements Serializable {
 	private boolean online;
 	private boolean inGame;
 	private String gameStateJson;
+	private String ships;
+	private String outgoingShots;
+	private String incomingShots;
 	
 	public Long getId() {
 		return id;
@@ -125,6 +128,44 @@ public class Player implements Serializable {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	
+	
+
+
+
+	public String getShips() {
+		return ships;
+	}
+
+
+
+	public void setShips(String ships) {
+		this.ships = ships;
+	}
+
+
+
+	public String getOutgoingShots() {
+		return outgoingShots;
+	}
+
+
+
+	public void setOutgoingShots(String outgoingShots) {
+		this.outgoingShots = outgoingShots;
+	}
+
+
+
+	public String getIncomingShots() {
+		return incomingShots;
+	}
+
+
+
+	public void setIncomingShots(String incomingShots) {
+		this.incomingShots = incomingShots;
 	}
 
 

@@ -72,9 +72,26 @@ public class GameClientController implements Serializable {
 		return g.getLastUserToMove();
 	}
 	
-	public String fireRound(String json) {
-		this.json = json;
-		return json;
+	
+	
+	public String fireRound() {
+		LOG.info(this.me + "Firing round");
+		return this.checkRounds();
+	}
+	
+	
+	public String checkRounds() {
+		
+		// opponents ships    compare method () , compare the rounds against the opponents ships
+		this.getMyOpponent().getShips();
+		
+		// set my outgoingShots
+		me.setOutgoingShots(this.json);
+		
+		// set incoming
+		this.getMyOpponent().setIncomingShots(this.json);
+		
+		return "checked coords";
 	}
 	
 	public boolean makeMyMove() {
