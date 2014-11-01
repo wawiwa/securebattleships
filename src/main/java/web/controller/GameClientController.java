@@ -35,9 +35,10 @@ public class GameClientController implements Serializable {
     
     private Player me;
     
+    private String json;
+    
     // Do NOT rely on this to get your opponent, use the method getMyOpponent()
     private Player selectedOpponent;
-
 
 	public void postInit(Player player){
 		me = player;
@@ -69,6 +70,28 @@ public class GameClientController implements Serializable {
 		Game g = this.getMyActiveGame();
 		if (g==null) return new Player();
 		return g.getLastUserToMove();
+	}
+	
+	
+	
+	public String fireRound() {
+		LOG.info(this.me + "Firing round");
+		return this.checkRounds();
+	}
+	
+	
+	public String checkRounds() {
+		
+		// opponents ships    compare method () , compare the rounds against the opponents ships
+		this.getMyOpponent().getShips();
+		
+		// set my outgoingShots
+		me.setOutgoingShots(this.json);
+		
+		// set incoming
+		this.getMyOpponent().setIncomingShots(this.json);
+		
+		return "checked coords";
 	}
 	
 	public boolean makeMyMove() {
@@ -116,6 +139,14 @@ public class GameClientController implements Serializable {
 	
 	public Player getMyOpponent() {
 		return gsl.getMyOpponent(me);
+	}
+
+	public String getJson() {
+		return json;
+	}
+
+	public void setJson(String json) {
+		this.json = json;
 	}
 	
 	

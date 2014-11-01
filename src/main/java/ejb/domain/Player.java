@@ -1,6 +1,7 @@
 package ejb.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +12,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @NamedQueries({
 	@NamedQuery(name ="findUserByEmail", 
@@ -40,11 +45,18 @@ public class Player implements Serializable {
 	  @JoinColumn(name="GAME_STAT_ID",referencedColumnName="id")
 	private GameStat gameStat;
 	
+    @NotNull
+    @NotEmpty
+    @Email(message="Email invalid.")
 	private String email;
+    
 	private String name;
 	private boolean online;
 	private boolean inGame;
 	private String gameStateJson;
+	private String ships;
+	private String outgoingShots;
+	private String incomingShots;
 	
 	public Long getId() {
 		return id;
@@ -116,6 +128,44 @@ public class Player implements Serializable {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	
+	
+
+
+
+	public String getShips() {
+		return ships;
+	}
+
+
+
+	public void setShips(String ships) {
+		this.ships = ships;
+	}
+
+
+
+	public String getOutgoingShots() {
+		return outgoingShots;
+	}
+
+
+
+	public void setOutgoingShots(String outgoingShots) {
+		this.outgoingShots = outgoingShots;
+	}
+
+
+
+	public String getIncomingShots() {
+		return incomingShots;
+	}
+
+
+
+	public void setIncomingShots(String incomingShots) {
+		this.incomingShots = incomingShots;
 	}
 
 
