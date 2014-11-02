@@ -23,24 +23,28 @@ public class ShipLayout {
 	public String getName() {
 		return name;
 	}
+	
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	/**
 	 * @return the shipCords
 	 */
 	public String[] getShipCords() {
 		return shipCords;
 	}
+	
 	/**
 	 * @param shipCords the shipCords to set
 	 */
 	public void setShipCords(String[] shipCords) {
 		this.shipCords = shipCords;
 	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
