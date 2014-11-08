@@ -24,6 +24,9 @@
 <h:head> <title>SecureBattleships</title> 
 
 
+
+
+
     <script src="jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="gameboardStyle.css"/>
     <script src="SHIP_noneDebug.js"></script>
@@ -140,10 +143,17 @@
         </h:form>
         
         
-        
+    <link rel="stylesheet" href="resources/assets/css/bootstrap.css"/>
+    <!-- <link rel="stylesheet" href="resources/assets/css/bootstrap-responsive.css"/> -->
+    <link rel="stylesheet" href="resources/assets/css/jquery.fancybox.css"/>
+
         <link rel="stylesheet" type="text/css" href="gameboardStyle.css"/>
         
-        
+   <div class="main">
+    <div class="container-fluid">
+
+        <div class="content">
+             
                     <div id="gameBox">
                     	<h3>Target Grid</h3>
                         <table border="1" id="targetCords">
@@ -459,10 +469,22 @@
         }
         
         </style>
-                        <div id="gameBox"  class="tgrid">
-                        	<h3>Ocean Grid</h3>
+
+<div class="row-fluid">
+                <div class="span12">
+                    <div class="box">
+                        <div class="box-head">
+                            <h3>Ocean Grid</h3>
+                        </div>
+                        <div class="box-content">
+
+
+
+                        <div class="row-fluid">
+                            <div class="span8">
+                            <div id="gameBox">
                             <table border="1" id="OceanCords">
-                            <tr>
+                            <tbody><tr>
                                 <th id="00"></th>
 
                                 <th id="01">1</th>
@@ -744,14 +766,56 @@
 
 
 
-                            </table>
+                            </tbody></table>
 
                             <br/>
                             <h3 id="message">You should start building some ships</h3>
 
 
                             </div>
+
+                            </div>
+                            <div class="span4">
+                                <h3>Game Instructions go Here</h3>
+                                <p>Just Click a box to get started. The order and size of each
+                                ship are as follows: Aircraft Carrier: 5 boxes, Destroyer: 4 boxes, Cruiser: 3 boxes.</p>
+
+                                <p>Once you click your first square, the green boxes that appear are the possible ending
+                                points of the ship.  Once your click on the green box, the boxes in between the two points
+                                will automatically be filled in.  <b>Once you have created your three ships, the your ships
+                                will automatically be persisted to the server.</b></p>
+
+                             <br/><br/><br/>
+
+                                <div class="colorGuide">
+                                    <h3>Color Guide</h3>
+                                    <p>Hit: RED</p>
+                                    <p>Miss: WHITE</p>
+                                    <p>Ship: GRAY</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         
+      </div></div></div>  
+<script src="resources/assets/js/less.js"></script>
+<script src="resources/assets/js/bootstrap.min.js"></script>
+<script src="resources/assets/js/jquery.peity.js"></script>
+<script src="resources/assets/js/jquery.fancybox.js"></script>
+<script src="resources/assets/js/jquery.flot.js"></script>
+<script src="resources/assets/js/jquery.color.js"></script>
+<script src="resources/assets/js/jquery.flot.resize.js"></script>
+<script src="resources/assets/js/jquery.cookie.js"></script>
+<script src="resources/assets/js/jquery.cookie.js"></script>
+<script src="resources/assets/js/custom.js"></script><script src="js/demo.js"></script>
         
         
 </h:body>      
