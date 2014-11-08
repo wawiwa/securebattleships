@@ -1,0 +1,27 @@
+.example-base, .example-blocks, .example-coupon, .example-multiple {
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    background-color: #ddd;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    color: #444;
+    margin: 20px 0;
+    text-align: center;
+    padding: 20px;
+
+}
+
+.example-base span {
+    display: block;
+    line-height: 2em;
+    font-size: 2em;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+    font-weight: 300;
+    line-height: 1.4em;
+}
+#clock {
+    font-size: 32px;
+}
