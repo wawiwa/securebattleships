@@ -130,16 +130,37 @@
 
             function l(e) { console.log(e); }
 
+            function JSONBoat(boat) {
+                this.name = boat.name;
+                this.shipCords = boat.shipCords;
+            }
+
             var gameBoats = new Array();
             function submitShips() {
                 //AJAX CALL to the back end will be made from this method.
                 // from which the json data will be inserted into the table.
 
 
-                console.log("FINAL RESULT: ");
-                console.log(JSON.stringify(gameBoats));
-                alert("Your Gameboard has been submitted to the server");
+                // console.log("FINAL RESULT: ");
+                // console.log(JSON.stringify(gameBoats));
+                // alert("Your Gameboard has been submitted to the server");
 
+                console.log("====");
+                var first = new JSONBoat(gameBoats[0]);
+                var second = new JSONBoat(gameBoats[1]);
+                var third = new JSONBoat(gameBoats[2]);
+                var conBoatGrid = new Array();
+                conBoatGrid.push(first);
+                conBoatGrid.push(second);
+                conBoatGrid.push(third);
+                //locked in version of the ships cords
+                console.log(JSON.stringify(conBoatGrid));
+                $("#OceanCords").css("background-color", "rgb(42, 166, 173)"); // Makes the Grid appear darker after ships have been positioned
+                alert(JSON.stringify(conBoatGrid));
+// [{"name":"Carrier","shipCords":["B2","C2","D2","E2","F2"]},{"name":"Destroyer","shipCords":["C6","C7","C8","C9"]},{"name":"Cruiser","shipCords":["F6","G6","H6"]}] 
+///////////////////////////////////////////////
+//            IMPORTANT FUNCTION
+//////////////////////////////////////////////   rgb(104, 158, 161)
             }
 
             function startShipPlacement(boat) {
