@@ -91,6 +91,7 @@ public class GameClientController implements Serializable {
 		// set incoming
 		this.getMyOpponent().setIncomingShots(this.json);
 		
+		this.getMyActiveGame().setLastUserToMove(me);
 		return "checked coords";
 	}
 	

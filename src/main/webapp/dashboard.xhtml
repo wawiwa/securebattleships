@@ -119,9 +119,9 @@
 					return '[{"RoundType": "outgoing", "From": "player1", "To": "player2"},{"Rounds":[{"isHit": null, "coords": "C5"},{"isHit": null, "coords": "D4"},{"isHit": null, "coords": "E5"},{ "isHit": null, "coords": "F5"}, { "isHit": null, "coords": "G5"}]}]';
 				}
 			</script>
-			<p:commandButton value="Fire a round" id="ajaxFire" update="fire" actionListener="#{gameClientController.fireRound('FIRED A ROUND')}" styleClass="ui-priority-primary" />
-			  <p:poll interval="3" update="fire" />
-			  <h:inputHidden id="fireCoords" value = "#{gameClientController.json}"/>
+				<p:commandButton value="Fire a round" id="ajaxFire" update="fire" actionListener="#{gameClientController.fireRound('FIRED A ROUND')}" styleClass="ui-priority-primary" />
+				<p:poll interval="3" update="fire" />
+				<h:inputHidden id="fireCoords" value = "#{gameClientController.json}"/>
 			<script>
 				document.getElementById("dashboard:fireCoords").value = sendFire();
 			</script>
