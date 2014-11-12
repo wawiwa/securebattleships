@@ -120,27 +120,18 @@
 
 			</p:dataTable>
 			
+				<p:commandButton value="Make a move" id="ajax" update="last" actionListener="#{gameClientController.makeMyMove()}" styleClass="ui-priority-primary" />
+				  <p:poll interval="3" update="last" />
+				<h2>Last player to move: <h:outputText id="last" value="#{gameClientController.getLastPlayerToMove()}" /></h2>
+				
 			
+			</h:form>
 			
-			<p:commandButton value="Make a move" id="ajax" update="last" actionListener="#{gameClientController.makeMyMove()}" styleClass="ui-priority-primary" />
-			  <p:poll interval="3" update="last" />
-			<h2>Last player to move: <h:outputText id="last" value="#{gameClientController.getLastPlayerToMove()}" /></h2>
-			
-			<script>
-				function sendFire () {
-					return '[{"RoundType": "outgoing", "From": "player1", "To": "player2"},{"Rounds":[{"isHit": null, "coords": "C5"},{"isHit": null, "coords": "D4"},{"isHit": null, "coords": "E5"},{ "isHit": null, "coords": "F5"}, { "isHit": null, "coords": "G5"}]}]';
-				}
-			</script>
-				<p:commandButton value="Fire a round" id="ajaxFire" update="fire" actionListener="#{gameClientController.fireRound('FIRED A ROUND')}" styleClass="ui-priority-primary" />
-				<p:poll interval="3" update="fire" />
-				<h:inputHidden id="fireCoords" value = "#{gameClientController.json}"/>
-			<script>
-				document.getElementById("dashboard:fireCoords").value = sendFire();
-			</script>
-			<h2>Fired this round: <h:outputText id="fire" value="#{gameClientController.json}" /></h2>
-			
-			
-        </h:form>
+			<h:form id="oceanGridForm">
+
+				<p:remoteCommand name="pushOceanGrid" actionListener="#{gameClientController.pushOceanGrid()}" /> 
+
+        	</h:form>
         
         
     <link rel="stylesheet" href="resources/assets/css/bootstrap.css"/>

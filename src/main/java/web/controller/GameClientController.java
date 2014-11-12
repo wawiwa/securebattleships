@@ -2,9 +2,11 @@ package web.controller;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -35,7 +37,7 @@ public class GameClientController implements Serializable {
     
     private Player me;
     
-    private String json;
+    private String oceanGrid;
     
     // Do NOT rely on this to get your opponent, use the method getMyOpponent()
     private Player selectedOpponent;
@@ -86,10 +88,10 @@ public class GameClientController implements Serializable {
 		this.getMyOpponent().getShips();
 		
 		// set my outgoingShots
-		me.setOutgoingShots(this.json);
+		me.setOutgoingShots(this.oceanGrid);
 		
 		// set incoming
-		this.getMyOpponent().setIncomingShots(this.json);
+		this.getMyOpponent().setIncomingShots(this.oceanGrid);
 		
 		this.getMyActiveGame().setLastUserToMove(me);
 		return "checked coords";
@@ -141,13 +143,19 @@ public class GameClientController implements Serializable {
 	public Player getMyOpponent() {
 		return gsl.getMyOpponent(me);
 	}
-
-	public String getJson() {
-		return json;
+	
+	public void pushOceanGrid() {
+		FacesContext context = FacesContext.getCurrentInstance();
+	    Map<String,String> map = context.getExternalContext().getRequestParameterMap();
+	    this.setOceanGrid(map.get("oceanGrid"));
 	}
 
-	public void setJson(String json) {
-		this.json = json;
+	public String getOceanGrid() {
+		return oceanGrid;
+	}
+
+	public void setOceanGrid(String oceanGrid) {
+		this.oceanGrid = oceanGrid;
 	}
 	
 	
