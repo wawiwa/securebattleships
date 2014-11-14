@@ -151,7 +151,8 @@ public class GameClientController implements Serializable {
 	}
 
 	public String getOceanGrid() {
-		return oceanGrid;
+		LOG.info("getOceanGrid(): "+this.oceanGrid);
+		return this.oceanGrid;
 	}
 
 	public void setOceanGrid(String oceanGrid) {
