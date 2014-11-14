@@ -128,11 +128,16 @@
 			</h:form>
 			
 			<h:form id="oceanGridForm">
+				<!-- Setting data from innerGame.js -->
+				<p:remoteCommand name="pushOceanGrid" actionListener="#{gameClientController.pushOceanGrid()}" 
+					oncomplete="getSSD()" update="oceanCoords"/> 
+				<!-- Getting data for innerGame.js -->
+				<h:inputHidden id="oceanCoords" value = "#{gameClientController.oceanGrid}"/>
+			</h:form>
+			
 
-				<p:remoteCommand name="pushOceanGrid" actionListener="#{gameClientController.pushOceanGrid()}" /> 
+					
 
-        	</h:form>
-        
         
     <link rel="stylesheet" href="resources/assets/css/bootstrap.css"/>
     <!-- <link rel="stylesheet" href="resources/assets/css/bootstrap-responsive.css"/> -->

@@ -156,7 +156,8 @@
                 //locked in version of the ships cords
                 console.log(JSON.stringify(conBoatGrid));
                 $("#OceanCords").css("background-color", "rgb(42, 166, 173)"); // Makes the Grid appear darker after ships have been positioned
-                pushOceanGrid([{name:'oceanGrid',value:JSON.stringify(conBoatGrid)}]);
+                pushOceanGrid([{name:'oceanGrid',value:JSON.stringify(conBoatGrid)}]); // Sending data to backend
+                console.log("Not Using jquery: "+document.getElementById('oceanGridForm:oceanCoords').value); // Getting data from backend
 // [{"name":"Carrier","shipCords":["B2","C2","D2","E2","F2"]},{"name":"Destroyer","shipCords":["C6","C7","C8","C9"]},{"name":"Cruiser","shipCords":["F6","G6","H6"]}] 
 ///////////////////////////////////////////////
 //            IMPORTANT FUNCTION
