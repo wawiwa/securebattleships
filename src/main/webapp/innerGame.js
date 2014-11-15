@@ -37,8 +37,6 @@
 
                 $("table#targetCords td").click(function(e) {
 
-
-
                     console.log("Cell was clicked: ", $(this).attr('id'));
 
                     var cellClicked = $(this).attr('id');
