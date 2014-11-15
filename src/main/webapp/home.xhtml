@@ -19,6 +19,17 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
+      
+
+<h:head> <title>SecureBattleships</title> 
+
+	<!-- Bootstrap core CSS -->
+    <link href="resources/assets/css/existing/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="resources/assets/css/existing/signin.css" rel="stylesheet"/>
+    
+</h:head>      
+
 
 <ui:fragment rendered="#{identity.loggedIn}">
     <div>Congratulations! You are currently logged in as: <b>#{identity.account.loginName}</b></div>
@@ -29,7 +40,7 @@
     </h:form>
 </ui:fragment>
 
-<h:form id="loginForm" rendered="#{not identity.loggedIn}">
+<h:form id="loginForm" class="form-signin" rendered="#{not identity.loggedIn}">
 
 <h3>Welcome to Secure Battleship</h3>
 
@@ -37,13 +48,13 @@
 
     <div class="loginRow">
         <h:outputLabel for="name" value="Username" styleClass="loginLabel"/>
-        <h:inputText id="name" value="#{loginCredentials.userId}"/>
+        <h:inputText id="name" class="form-control" value="#{loginCredentials.userId}" placeholder="Username"/>
         
     </div>
 
     <div class="loginRow">
         <h:outputLabel for="password" value="Password" styleClass="loginLabel"/>
-        <h:inputSecret id="password" value="#{loginCredentials.password}" redisplay="true"/>
+        <h:inputSecret id="password" class="form-control" value="#{loginCredentials.password}" redisplay="true" placeholder="Password"/>
     </div>
 
     <div class="loginRow">
@@ -57,7 +68,7 @@
     
 	<p:commandButton value="Init Users" id="startGame" actionListener="#{SecurityInitializer.initPlayers()}" styleClass="ui-priority-primary" />
 	
-	Login with: wade/wade, jack/jack or thierry/thierry
+	<p>Login with: wade/wade, jack/jack or thierry/thierry</p>
 </h:form>
 
 <br style="clear:both"/>
