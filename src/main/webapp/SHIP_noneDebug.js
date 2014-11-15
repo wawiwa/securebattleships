@@ -69,25 +69,24 @@ function autoClick(sel) {
 
 function Shot () {
     this.isHit = null;
-    this.coords = new Array();
+    this.coords = "";
 }
 
 Shot.prototype.getIsHit = function() {
     return this.isHit;
-}
+};
 
 Shot.prototype.getCoords = function() {
     return this.coords;
-}
+};
 
 Shot.prototype.setCoords = function(letter, number) {
-    this.coords[0] = letter;
-    this.coords[1] = number;
-}
+    this.coords = letter + "" + number;
+};
 
 Shot.prototype.setIsHit = function(v) {
     this.isHit = v;
-}
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,34 +108,34 @@ function Ship (name, pegLength) {
 // getters and setters
 Ship.prototype.getName = function () {
     return this.name;
-}
+};
 
 Ship.prototype.setName = function (e) {
     this.name = e;
-}
+};
 Ship.prototype.getPegLength = function () {
     return this.pegLength;
-}
+};
 
 Ship.prototype.setPegthLength = function (e) {
     this.pegLength = e;
-}
+};
 
 
 // Helper methods
 
 Ship.prototype.hasAxisAlignmentBeenDetermined = function () {
     return (this.axisAlignment == null) ? false : true;
-}
+};
 
 //e.g. isAxisalignment("x");
 Ship.prototype.isAxisAlignment = function (e) {
     return (this.axisAlignment == e) ? true : false;
-}
+};
 
 Ship.prototype.isShipBuilt = function () {
     return (this.shipCords.length < this.pegLength) ? false : true;
-}
+};
 
 Ship.prototype.shipCords_push = function (e) {
     if (this.shipCords.length < this.pegLength) {
@@ -149,7 +148,7 @@ Ship.prototype.shipCords_push = function (e) {
     } else {
         return false;
     }
-}
+};
 
 Ship.prototype.hitShotCords_push = function (e) {
     if (this.hitShotCords.length < this.pegLength) {
@@ -162,7 +161,7 @@ Ship.prototype.hitShotCords_push = function (e) {
     } else {
         return false;
     }
-}
+};
 
 // Fills in the gap between the two points
 Ship.prototype.fillInShip = function () {
@@ -200,7 +199,7 @@ Ship.prototype.fillInShip = function () {
     }
 
 
-}
+};
 
 
 Ship.prototype.removePotentialEndsColoring = function () {
@@ -212,7 +211,7 @@ Ship.prototype.removePotentialEndsColoring = function () {
 
     //clearing the disabled cells;
     clearDisabledCells();
-}
+};
 
 
 function hasClickedClass(letter, number) {
@@ -254,7 +253,7 @@ Ship.prototype.findLeftBound = function (center, centerLetter) {
         return (left > check[1]) ? true : false;
     }
 
-}
+};
 
 
 function anythingOnTheTop(center, letter) {
@@ -284,7 +283,7 @@ Ship.prototype.findTopBound = function(center, centerLetter) {
         return (top > check[1]) ? true : false;
     }
 
-}
+};
 
 
 function anythingOnTheRight(center, letter) {
@@ -313,7 +312,7 @@ Ship.prototype.findRightBound = function(center, centerLetter) {
         return (right < check[1]) ? true : false;
     }
 
-}
+};
 
 
 
@@ -343,7 +342,7 @@ Ship.prototype.findBottomBound = function(center, centerLetter) {
         return (bottom < check[1]) ? true : false;
     }
 
-}
+};
 
 
 Ship.prototype.step1 = function () {
@@ -400,4 +399,4 @@ Ship.prototype.step1 = function () {
         alert("Error, there are no possible endpoints to end this ship on. U must undo");
     }
 
-}
+};
