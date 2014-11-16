@@ -12,7 +12,31 @@
 
 
 
+            function hide_target_grid() {
+                $("div#gameBox.trGrid").hide();
+            }
 
+            function show_target_grid() {
+                $("div#gameBox.trGrid").show();
+            }
+
+            function hide_ocean_grid() {
+                $("div#ocGrid.row-fluid").hide();
+            }
+
+            function show_ocean_grid() {
+                $("div#ocGrid.row-fluid").show();
+            }
+
+            function hide_both_game_grids() {
+                hide_target_grid();
+                hide_ocean_grid();
+            }
+
+            function show_both_game_grids() {
+                show_target_grid();
+                show_ocean_grid();
+            }
 
 
 
