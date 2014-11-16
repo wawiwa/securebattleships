@@ -96,24 +96,32 @@
             }
 
 
-            function updateGridWithIncomingShots(jsonData) {
-                // function accepts a json string of shots where the determination has been
-                // made for whether or not it they we hit or misses
+            var LOGG_ON = true;
+
+            function updateGridWithIncomingShots(jsonData, specific_grid_selector) {
+                // This function accepts the post validation json string
+                // of an outgoing target grid shots.  It should and can be
+                // used for updating both the target and ocean grids.
+                
+                // Second param is optional. Its used for more specific grid cell updates
 
                 var data = JSON.parse(jsonData);
-                console.log(data);
 
-                console.log(data.length);
+                if (LOGG_ON) {
+                    console.log("The Data", data);
+                    console.log(data.length);
+                    console.log("Rounds at : ", data[0].Rounds);
+                }
 
-                var IR = data[1].Rounds;
+                var IR = data[0].Rounds;
                 console.log(IR);
                 Object.keys(IR).forEach(function(key) {
-                    var cord = IR[key].coords;
+                    var cord = IR[key].coords
                     var classTOAdd = (IR[key].isHit === false) ? "missed" : "hit";
                     $("#" + cord).addClass(classTOAdd);
-                    console.log(key, IR[key]);
+                    if (LOGG_ON) { console.log(key, IR[key]); }
                 });
-
+                
             }
 
 
