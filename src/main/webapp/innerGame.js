@@ -55,8 +55,7 @@
                         }
 
                         if (count === 5) {
-                            wrapperData.push({"RoundType": "outgoing", "From": "player1", "To": "player2"});
-                            wrapperData.push({"Rounds":outgoingRounds});
+                        	wrapperData.push({"RoundType": "outgoing", "From": "player1", "To": "player2", "Rounds": outgoingRounds});
 
                             // 5 cords have been select, enable the fire button
                             $("#fireMissiles").attr("disabled", false);
@@ -96,12 +95,10 @@
 
             $("#fireMissiles").click(function() {
 
-                console.log("goingRounds: ", wrapperData);
-
-                if (wrapperData[1].Rounds.length === 5) {
+                if (wrapperData[0].Rounds.length === 5) {
                     //5 shots in fact have been select, thus valid
                     var dataInJSON = JSON.stringify(wrapperData);
-                    console.log(dataInJSON);
+                    alert(dataInJSON);
 
                     // This data needs to be sent to the server, check whether or not the select shots were hits
                     // or misses
