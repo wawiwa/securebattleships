@@ -168,7 +168,8 @@ public class GameClientController implements Serializable {
 	    // TODO: some magical shit in here
 	    this.setTargetGrid("[{\"RoundType\":\"outgoing\",\"From\":\"player1\",\"To\":\"player2\",\"Rounds\":[{\"isHit\":true,\"coords\":\"C3\"},{\"isHit\":false,\"coords\":\"C7\"},{\"isHit\":true,\"coords\":\"E5\"},{\"isHit\":false,\"coords\":\"F7\"},{\"isHit\":true,\"coords\":\"G3\"}]}]");
 	}
-
+	
+	// bla bla
 	public String getTargetGrid() {
 		LOG.info("getTargetGrid(): "+this.targetGrid);
 		return this.targetGrid;
