@@ -149,9 +149,17 @@
 			<h:form id="oceanGridForm">
 				<!-- Setting data from innerGame.js -->
 				<p:remoteCommand name="pushOceanGrid" actionListener="#{gameClientController.pushOceanGrid()}" 
-					oncomplete="getSSD()" update="oceanCoords"/> 
+					update="oceanCoords"/> 
 				<!-- Getting data for innerGame.js -->
 				<h:inputHidden id="oceanCoords" value = "#{gameClientController.oceanGrid}"/>
+			</h:form>
+			
+			<h:form id="targetGridForm">
+				<!-- Setting data from innerGame.js -->
+				<p:remoteCommand name="pushTargetGrid" actionListener="#{gameClientController.pushTargetGrid()}" 
+					ajax="false" update="targetGrid"/> 
+				<!-- Getting data for innerGame.js -->
+				<h:inputHidden id="targetGrid" value = "#{gameClientController.targetGrid}"/>
 			</h:form>
 			
 

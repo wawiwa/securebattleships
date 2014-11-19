@@ -38,6 +38,7 @@ public class GameClientController implements Serializable {
     private Player me;
     
     private String oceanGrid;
+    private String targetGrid;
     
     // Do NOT rely on this to get your opponent, use the method getMyOpponent()
     private Player selectedOpponent;
@@ -159,6 +160,23 @@ public class GameClientController implements Serializable {
 		this.oceanGrid = oceanGrid;
 	}
 	
+	
+	public void pushTargetGrid() {
+		FacesContext context = FacesContext.getCurrentInstance();
+	    Map<String,String> map = context.getExternalContext().getRequestParameterMap();
+	    this.setTargetGrid(map.get("targetGrid"));
+	    // TODO: some magical shit in here
+	    this.setTargetGrid("[{\"RoundType\":\"outgoing\",\"From\":\"player1\",\"To\":\"player2\",\"Rounds\":[{\"isHit\":true,\"coords\":\"C3\"},{\"isHit\":false,\"coords\":\"C7\"},{\"isHit\":true,\"coords\":\"E5\"},{\"isHit\":false,\"coords\":\"F7\"},{\"isHit\":true,\"coords\":\"G3\"}]}]");
+	}
+
+	public String getTargetGrid() {
+		LOG.info("getTargetGrid(): "+this.targetGrid);
+		return this.targetGrid;
+	}
+
+	public void setTargetGrid(String targetGrid) {
+		this.targetGrid = targetGrid;
+	}
 	
 	
 	

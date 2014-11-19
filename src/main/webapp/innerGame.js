@@ -130,6 +130,12 @@
                 if (wrapperData[0].Rounds.length === 5) {
                     //5 shots in fact have been select, thus valid
                     var dataInJSON = JSON.stringify(wrapperData);
+                    pushTargetGrid([{name:'targetGrid',value:dataInJSON}]);
+                    var targetGrid = $("#targetGridForm\\:targetGrid").val();
+                    pushTargetGrid([{name:'targetGrid',value:dataInJSON}]);
+                    targetGrid = $("#targetGridForm\\:targetGrid").val();
+                    console.log("Target Grid: "+targetGrid);
+                    updateGridWithIncomingShots(targetGrid);
                     alert(dataInJSON);
 
                     // This data needs to be sent to the server, check whether or not the select shots were hits
